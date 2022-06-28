@@ -6,12 +6,13 @@ import os
 
 
 
-
+""""
 Tk().withdraw()
 load_image = askopenfilename()
 
 target_image = fr.load_image_file(load_image)
 target_encoding = fr.face_encodings(target_image)
+"""
 
 
 
@@ -26,7 +27,7 @@ def encode_faces(folder):
 
     return list_photos_encoding
 
-def find_target_face():
+def find_target_face(target_image , target_encoding):
     face_location = fr.face_locations(target_image)
 
     for person in encode_faces('photos/'):
@@ -39,27 +40,15 @@ def find_target_face():
             for location in face_location:
                 if is_target_face[face_number]:
                     label = filename
-                    create_frame(location, label)
+                    #create_frame(location, label)
                 face_number += 1
 
-
-def create_frame(location, label):
-    top, right, bottom, left = location
+""""
+ def create_frame(location, label):
+   top, right, bottom, left = location
 
     cv.rectangle(target_image, (left, top), (right, bottom), (255, 0, 0), 2)
     cv.rectangle(target_image, (left, bottom+20), (right, bottom), (255, 0, 0), cv.FILLED)
     cv.putText(target_image, label, (left+3, bottom+13), cv.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 1)
-
-
-def render_image():
-    rgb_img = cv.cvtColor(target_image, cv.COLOR_BGR2RGB)
-    cv.imshow('Face Recognition', rgb_img)
-    cv.waitKey(0)
-
-
-find_target_face()
-render_image()
-
-
-
+    """
 
